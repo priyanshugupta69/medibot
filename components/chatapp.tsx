@@ -29,7 +29,7 @@ const ChatApp: React.FC = () => {
                             ? {
                                 ...msg,
                                 answer:
-                                    data.prompt_response
+                                    data.prompt_response==''?'I am not able to understand what you mean, please try reframing your question.':data.prompt_response
                             }
                             : msg
                     )
@@ -59,8 +59,9 @@ const ChatApp: React.FC = () => {
                             {msg.answer && (
                                 <div className="flex items-start mb-10">
                                     <img
-                                        src="/human_1.png" // Replace with the actual path to the profile picture
-                                        className="w-14 h-16 rounded-full"
+                                        src="/human_2.png" // Replace with the actual path to the profile picture
+                                        className="w-8 m-2 rounded-full"
+                                        style = {{transform:"scaleX(-1)"}}
                                         alt="Profile"
                                     />
                                     <div className="text-left rounded-2xl">
@@ -92,7 +93,7 @@ const ChatApp: React.FC = () => {
                     <button
                         type = "submit"
                         onClick={sendMessage}
-                        className="ml-4 px-4 py-2 bg-[#56B21D] text-white rounded-full"
+                        className="ml-4 px-4 py-2 bg-[#323557] text-white rounded-full"
                     >
                         Send
                     </button>
