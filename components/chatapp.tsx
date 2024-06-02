@@ -35,7 +35,7 @@ const ChatApp: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col h-[1080px]">
+      <div className="flex flex-col h-[720px]">
         <div className="flex-1 overflow-y-auto">
           {messages.map((msg, index) => (
             <div key={index}>
