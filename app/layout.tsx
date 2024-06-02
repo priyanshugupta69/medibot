@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import Footer from "../components/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +16,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <body className = "max-h-10">
+      <div className="h-24">
+      <div className="absolute inset-0 flex justify-center items-center z-[-10]">
+        <div className="flex items-center">
+          <img src="/human_1.png" alt="Medibot Logo" className="w-24 h-24" />
+          <div className="text-5xl text-[#A49B9B]">Medibot</div>
+        </div>
+      </div>
+        {children}
+        <Footer/>
+      </div>
+      
+    </body>
+  </html>
   );
 }
