@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import axios from 'axios';
 
 interface Message {
   question: string;
@@ -10,26 +11,33 @@ const ChatApp: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState<string>('');
 
-  const sendMessage = () => {
+  const sendMessage = async() => {
     if (inputText.trim() !== '') {
       const newMessage: Message = { question: inputText, answer: '' };
       setMessages([...messages, newMessage]);
-      setInputText('');
+      try{
+         const {data} = await axios.get(`https://api.huego.ai/query_data?question=${inputText}`)
+         console.log(data.prompt_response)
+         setInputText('');
+         setMessages(prevMessages =>
+            prevMessages.map((msg, index) =>
+              index === prevMessages.length - 1
+                ? {
+                    ...msg,
+                    answer:
+                      data.prompt_response
+                  }
+                : msg
+            )
+          );
+
+      }catch(err){
+        console.log(err)
+      }
 
       // Simulate server response (replace with actual server request)
-      setTimeout(() => {
-        setMessages(prevMessages =>
-          prevMessages.map((msg, index) =>
-            index === prevMessages.length - 1
-              ? {
-                  ...msg,
-                  answer:
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum'
-                }
-              : msg
-          )
-        );
-      }, 1000);
+      
+        
     }
   };
 
