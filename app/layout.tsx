@@ -20,12 +20,15 @@ export default function RootLayout({
       <div className="h-24">
       <div className="absolute inset-0 flex justify-center items-center z-[-10]">
         <div className="flex items-center">
-          <img src="/human_1.png" alt="Medibot Logo" className="w-24 h-24" />
-          <div className="text-5xl text-[#A49B9B]">Medibot</div>
+          <img src="/human_1.png" alt="Medibot Logo" className="w-20 h-24" />
+          <div className="text-5xl text-[#A49B9B]">Huego</div>
         </div>
       </div>
         {children}
+        <div style={{position: "absolute", bottom: 4, left: "50%", transform: "translate(-50%, 0)" }}>
         <Footer/>
+        </div>
+        
       </div>
       
     </body>
