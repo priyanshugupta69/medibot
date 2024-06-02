@@ -19,9 +19,9 @@ export default function RootLayout({
     <body className = "max-h-10">
       <div className="h-24">
       <div className="absolute inset-0 flex justify-center items-center z-[-10]">
-        <div className="flex items-center">
-          <img src="/human_1.png" alt="Medibot Logo" className="w-20 h-24" />
-          <div className="text-5xl text-[#A49B9B]">Huego</div>
+        <div className="flex opacity-50 items-center">
+          <img src="/human_1.png" alt="Medibot Logo" className="w-52" />
+          <div className="text-8xl text-[#A49B9B]">Huego</div>
         </div>
       </div>
         {children}

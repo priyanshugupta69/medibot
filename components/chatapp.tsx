@@ -57,7 +57,7 @@ const ChatApp: React.FC = () => {
                                 </div>
                             )}
                             {msg.answer && (
-                                <div className="flex items-start mb-4">
+                                <div className="flex items-start mb-10">
                                     <img
                                         src="/human_1.png" // Replace with the actual path to the profile picture
                                         className="w-14 h-16 rounded-full"
