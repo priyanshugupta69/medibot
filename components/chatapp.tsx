@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Typewriter from './typewriter';
+import Footer from './footer';
 
 interface Message {
     question: string;
@@ -21,7 +22,7 @@ const ChatApp: React.FC = () => {
         if (inputText.trim() !== '') {
             const newMessage: Message = { question: inputText, answer: '' };
             setMessages([...messages, newMessage]);
-            setOpacity('opacity-0')
+            setOpacity('hidden')
             try {
                 setloader(true)
                 const { data } = await axios.get(`https://api.huego.ai/query_data?question=${inputText}`)
@@ -53,73 +54,71 @@ const ChatApp: React.FC = () => {
     };
     return (
         <div>
-            <div className="absolute inset-0 flex justify-center items-center z-[-10]">
+            <div className="absolute z-[10]" style={{transform:'translate(-50%,-50%)', left:'50%', top:'40%'}}>
                 <div className={`flex ${opacity} items-center`}>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
                     <div className="text-5xl md:text-8xl text-[#A49B9B]">Huego</div>
                 </div>
             </div>
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col h-[740px]">
-                    {messages.length != 0 && <div className='flex justify-center text-xl mb-8 mt-4'><span className='bg-black text-white text-xl p-4 rounded-full font-serif'>Huego.ai</span></div>}
-                    <div className="flex-1 overflow-y-auto m-auto w-full lg:w-8/12">
-                        {messages.map((msg, index) => (
-                            <div key={index}>
-                                {msg.question && (
-                                    <div className="my-10 text-right">
-                                        <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'>{msg.question}</div>
-                                    </div>
-                                )}
-                                {msg.answer && (
-                                    <div className="flex items-start mb-10">
-                                        <img
-                                            src="/human_2.png" // Replace with the actual path to the profile picture
-                                            className="w-8 m-2 rounded-full"
-                                            style={{ transform: "scaleX(-1)" }}
-                                            alt="Profile"
-                                        />
-                                        <div className="text-left rounded-2xl">
-                                            <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'>{msg.answer}</div>
+            <div className="mx-0 px-0">
+                <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
+                    <div className='lg:w-8/12 w-11/12' style={{backgroundColor:'#ffffff'}}>
+                        {messages.length != 0 && <div className='text-center py-1 w-8/12' style={{position:'fixed', backgroundColor:'#ffffff', zIndex:10}}><p className='bg-black text-white text-center m-auto text-l py-2 px-4 rounded-full' style={{width:'max-content'}}>Huego.ai</p></div>}
+                        <div className="flex-1 overflow-y-auto m-auto w-full mt-10" style={{height:'87vh'}}>
+                            {messages.map((msg, index) => (
+                                <div key={index} className='mt-3'>
+                                    {msg.question && (
+                                        <div className="mb-10 text-right">
+                                            <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'>{msg.question}</div>
+                                        </div>
+                                    )}
+                                    {msg.answer && (
+                                        <div className="flex items-start mb-10">
+                                            <img
+                                                src="/human_2.png" // Replace with the actual path to the profile picture
+                                                className="w-8 m-2 ml-0 rounded-full"
+                                                style={{ transform: "scaleX(-1)" }}
+                                                alt="Profile"
+                                            />
+                                            <div className="text-left rounded-2xl">
+                                                <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'>{msg.answer}</div>
+                                            </div>
 
                                         </div>
+                                    )}
+                                </div>
+                            ))}
 
-                                    </div>
-                                )}
+                            <div>
+                                {loader && <img className='mx-20' width="40" src='/loader.gif'>
+                                </img>}
                             </div>
-
-                        ))}
-
-                        <div>
-                            {loader && <img className='mx-20' width="40" src='/loader.gif'>
-                            </img>}
                         </div>
                     </div>
-                    <form onSubmit={sendMessage}>
-                        <div className="flex space-around items-center m-auto w-full lg:w-8/12">
-
-                            <input
-                                type="text"
-                                value={inputText}
-                                onChange={(e) => setInputText(e.target.value)}
-                                className=" w-11/12 px-4 py-2 rounded-full border"
-                                placeholder="Type your message..."
-                                disabled={disabled}
-                            />
-                            <button
-                                type="submit"
-                                onClick={sendMessage}
-                                className="ml-4 px-4 py-2 bg-[#323557] text-white rounded-full"
-                                disabled={disabled}
-                            >
-                                Send
-                            </button>
-
-
-
-                        </div>
-
-                    </form>
-
+                    <div className="footer w-full" style={{ position: 'fixed', bottom: 0, backgroundColor:'#ffffff' }}>
+                        <form onSubmit={sendMessage} style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
+                            <div className='lg:w-8/12 w-11/12 flex'>
+                                <input
+                                    type="text"
+                                    value={inputText}
+                                    onChange={(e) => setInputText(e.target.value)}
+                                    className="w-11/12 px-4 py-2 rounded-full border"
+                                    placeholder="Type your message..."
+                                    disabled={disabled}
+                                />
+                                <button
+                                    type="submit"
+                                    onClick={sendMessage}
+                                    className="px-4 py-2 md:ml-6 bg-[#323557] text-white rounded-full"
+                                    style={{float:'right'}}
+                                    disabled={disabled}
+                                >
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+                        <Footer />
+                    </div>
                 </div>
             </div>
         </div>
