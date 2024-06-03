@@ -60,9 +60,9 @@ const ChatApp: React.FC = () => {
                 </div>
             </div>
             <div className="container mx-auto px-4">
-                <div className="flex flex-col h-[720px]">
+                <div className="flex flex-col h-[740px]">
                     {messages.length != 0 && <div className='flex justify-center text-xl mb-8 mt-4'><span className='bg-black text-white text-xl p-4 rounded-full font-serif'>Huego.ai</span></div>}
-                    <div className="flex-1 overflow-y-auto m-auto w-full md:w-8/12">
+                    <div className="flex-1 overflow-y-auto m-auto w-full lg:w-8/12">
                         {messages.map((msg, index) => (
                             <div key={index}>
                                 {msg.question && (
@@ -79,7 +79,7 @@ const ChatApp: React.FC = () => {
                                             alt="Profile"
                                         />
                                         <div className="text-left rounded-2xl">
-                                            <div id='answer' className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'>{msg.answer}</div>
+                                            <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'>{msg.answer}</div>
 
                                         </div>
 
@@ -95,7 +95,7 @@ const ChatApp: React.FC = () => {
                         </div>
                     </div>
                     <form onSubmit={sendMessage}>
-                        <div className="flex space-around items-center m-auto w-full md:w-8/12">
+                        <div className="flex space-around items-center m-auto w-full lg:w-8/12">
 
                             <input
                                 type="text"
