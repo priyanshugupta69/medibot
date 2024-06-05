@@ -22,12 +22,11 @@ const ChatApp: React.FC = () => {
         if (inputText.trim() !== '') {
             const newMessage: Message = { question: inputText, answer: '' };
             setMessages([...messages, newMessage]);
-            setOpacity('hidden')
+            setOpacity('hidden');
             try {
                 setloader(true)
                 const { data } = await axios.get(`https://api.huego.ai/query_data?question=${inputText}`)
                 console.log(data.prompt_response)
-                setInputText('');
                 setMessages(prevMessages =>
                     prevMessages.map((msg, index) =>
                         index === prevMessages.length - 1
@@ -39,12 +38,25 @@ const ChatApp: React.FC = () => {
                             : msg
                     )
                 );
-                setloader(false)
-                setDisabled(false)
                 console.log(disabled)
 
             } catch (err) {
-                console.log(err)
+                console.log(err);
+                setMessages(prevMessages =>
+                    prevMessages.map((msg, index) =>
+                        index === prevMessages.length - 1
+                            ? {
+                                ...msg,
+                                answer:
+                                    'Something wrong with the server, maybe the API tokens have expired or any other internal problem!!'
+                            }
+                            : msg
+                    )
+                );
+            } finally {
+                setloader(false)
+                setDisabled(false);
+                setInputText('');
             }
 
             // Simulate server response (replace with actual server request)
@@ -54,26 +66,34 @@ const ChatApp: React.FC = () => {
     };
     return (
         <div>
-            <div className="absolute z-[10]" style={{transform:'translate(-50%,-50%)', left:'50%', top:'40%'}}>
-                <div className={`flex ${opacity} items-center`}>
+            <div className={`${opacity} z-[10]`} style={{ position: 'absolute', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
+                <div className='lg:flex lg:items-center'>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                    <div className="text-5xl md:text-8xl text-[#A49B9B]">Huego</div>
+                    <span><div className="text-5xl md:text-8xl text-[#A49B9B]">Huego</div></span>
                 </div>
             </div>
             <div className="mx-0 px-0">
                 <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
-                    <div className='lg:w-8/12 w-11/12' style={{backgroundColor:'#ffffff'}}>
-                        {messages.length != 0 && <div className='text-center py-1 w-8/12' style={{position:'fixed', backgroundColor:'#ffffff', zIndex:10}}><p className='bg-black text-white text-center m-auto text-l py-2 px-4 rounded-full' style={{width:'max-content'}}>Huego.ai</p></div>}
-                        <div className="flex-1 overflow-y-auto m-auto w-full mt-10" style={{height:'87vh'}}>
+                    <div style={{ backgroundColor: '#ffffff' }} className='w-full'>
+                        {messages.length != 0 &&
+                            <div
+                                className='flex-1 text-center py-1 w-full m-auto'
+                                style={{ position: 'fixed', backgroundColor: '#ffffff', zIndex: 10 }}>
+                                <p className='bg-black text-white text-center m-auto text-xl py-2 px-4 rounded-full font-serif'
+                                    style={{ width: 'max-content' }}>
+                                    Huego.ai
+                                </p>
+                            </div>}
+                        <div className="flex-1 overflow-y-auto m-auto mt-12 lg:w-8/12 w-11/12" style={{ height: '84vh' }}>
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
-                                        <div className="mb-10 text-right">
+                                        <div className="mb-2 text-right">
                                             <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'>{msg.question}</div>
                                         </div>
                                     )}
                                     {msg.answer && (
-                                        <div className="flex items-start mb-10">
+                                        <div className="flex items-start mb-6">
                                             <img
                                                 src="/human_2.png" // Replace with the actual path to the profile picture
                                                 className="w-8 m-2 ml-0 rounded-full"
@@ -95,7 +115,7 @@ const ChatApp: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="footer w-full" style={{ position: 'fixed', bottom: 0, backgroundColor:'#ffffff' }}>
+                    <div className="footer w-full" style={{ position: 'fixed', bottom: 0, backgroundColor: '#ffffff' }}>
                         <form onSubmit={sendMessage} style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
                             <div className='lg:w-8/12 w-11/12 flex'>
                                 <input
@@ -110,7 +130,7 @@ const ChatApp: React.FC = () => {
                                     type="submit"
                                     onClick={sendMessage}
                                     className="px-4 py-2 md:ml-6 bg-[#323557] text-white rounded-full"
-                                    style={{float:'right'}}
+                                    style={{ float: 'right' }}
                                     disabled={disabled}
                                 >
                                     Send
