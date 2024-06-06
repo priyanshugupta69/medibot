@@ -69,7 +69,7 @@ const ChatApp: React.FC = () => {
             <div className={`${opacity} z-[10]`} style={{ position: 'absolute', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
                 <div className='lg:flex lg:items-center'>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                    <span><div className="text-5xl md:text-8xl text-[#A49B9B]">Huego</div></span>
+                    <span><div className="text-5xl md:text-8xl text-[#4a4f82] font-serif">Huego</div></span>
                 </div>
             </div>
             <div className="mx-0 px-0">
@@ -84,7 +84,7 @@ const ChatApp: React.FC = () => {
                                     Huego.ai
                                 </p>
                             </div>}
-                        <div className="flex-1 overflow-y-auto m-auto mt-12 lg:w-8/12 w-11/12" style={{ height: '84vh' }}>
+                        <div className="flex-1 overflow-y-auto m-auto mt-20 lg:w-8/12 w-11/12" style={{ height: '84vh' }}>
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
@@ -110,7 +110,7 @@ const ChatApp: React.FC = () => {
                             ))}
 
                             <div>
-                                {loader && <img className='mx-20' width="40" src='/loader.gif'>
+                                {loader && <img className='mx-20' width="80" src='/search.gif'>
                                 </img>}
                             </div>
                         </div>
