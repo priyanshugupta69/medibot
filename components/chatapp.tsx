@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Typewriter from './typewriter';
 import Footer from './footer';
+import { getRandomElements } from './elements/random';
 
 interface Message {
     question: string;
@@ -14,10 +15,36 @@ const ChatApp: React.FC = () => {
     const [inputText, setInputText] = useState<string>('');
     const [loader, setloader] = useState<boolean>(false)
     const [disabled, setDisabled] = useState<boolean>(false)
-    const [opacity, setOpacity] = useState<string>('')
+    const [opacity, setOpacity] = useState<string>('');
+    const [suggestions, setSuggestions] = useState<any>([]);
+    const [revealed, setRevealed] = useState(false);
 
-    const sendMessage = async (e: any) => {
-        e.preventDefault()
+    useEffect(() => {
+        // Simulate reveal on page load after a delay
+        const timer = setTimeout(() => {
+            setRevealed(true);
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+
+    useEffect(() => {
+        const screenWidth = window.screen.width;
+        var numberOfSuggestions = 3;
+        if (screenWidth < 467) {
+            numberOfSuggestions = 2;
+        }
+        setSuggestions(getRandomElements(numberOfSuggestions));
+    }, []);
+
+    useEffect(() => { sendMessage() }, [inputText]);
+    const runSuggestion = async (suggestion: any) => {
+        setInputText(suggestion);
+        // sendMessage();
+    }
+    const sendMessage = async () => {
+        // e.preventDefault();
         setDisabled(true)
         if (inputText.trim() !== '') {
             const newMessage: Message = { question: inputText, answer: '' };
@@ -66,10 +93,22 @@ const ChatApp: React.FC = () => {
     };
     return (
         <div>
-            <div className={`${opacity} z-[10]`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '50%' }}>
-                <div className='flex items-center justify-start ml-[-10%]'>
+            <div className={`${opacity} z-[10] w-full`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
+                <div className='flex items-center justify-start ml-[-10%]' style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
                     <span><div className="text-5xl md:text-8xl text-[#323557] font-serif">Huego</div></span>
+                </div>
+                <div className='absolute text-center w-full'>
+                    <p className={`text-[#323557] reveal-text ${revealed ? 'revealed' : ''}`}>
+                        I am a knowledge agent made to help you with medical questions you have !
+                    </p>
+                    <div className={`flex w-full reveal-text ${revealed ? 'revealed' : ''}`} style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        {suggestions.map((suggestion: any, index: number) => {
+                            return (<div key={index} className='text-[#323557] my-2 mx-4 p-2 rounded-2xl w-3/12 lg:w-1/12' style={{ border: '1px solid #323557' }} onClick={() => { runSuggestion(suggestion) }}>
+                                {suggestion}
+                            </div>)
+                        })}
+                    </div>
                 </div>
             </div>
             <div className="mx-0 px-0">
@@ -123,7 +162,7 @@ const ChatApp: React.FC = () => {
                                     value={inputText}
                                     onChange={(e) => setInputText(e.target.value)}
                                     className="w-11/12 px-4 py-2 rounded-full border"
-                                    placeholder="Type your message..."
+                                    placeholder="Ask Huego..."
                                     disabled={disabled}
                                 />
                                 <button

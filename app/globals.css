@@ -22,3 +22,13 @@
     background: #555; 
   }
 
+  /* components/RevealText.module.css */
+.reveal-text {
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Adjust duration and timing function as needed */
+}
+
+.reveal-text.revealed {
+  opacity: 1;
+}
+
