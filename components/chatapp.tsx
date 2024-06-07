@@ -115,7 +115,7 @@ const ChatApp: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="footer w-full" style={{ position: 'fixed', bottom: 0, backgroundColor: '#ffffff' }}>
+                    <div className="footer w-full" style={{ position: 'fixed', bottom: 50, backgroundColor: '#ffffff' }}>
                         <form onSubmit={sendMessage} style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
                             <div className='lg:w-8/12 w-11/12 flex'>
                                 <input
@@ -129,15 +129,17 @@ const ChatApp: React.FC = () => {
                                 <button
                                     type="submit"
                                     onClick={sendMessage}
-                                    className="px-4 py-2 md:ml-6 bg-[#323557] text-white rounded-full"
+                                    className="px-4 py-2 ml-2 md:ml-6 bg-[#323557] text-white rounded-full"
                                     style={{ float: 'right' }}
                                     disabled={disabled}
                                 >
                                     Send
                                 </button>
                             </div>
+                            <div className='footer h-0 w-full' style={{ position: 'fixed', bottom: 50, backgroundColor: '#ffffff' }}>
+                               <Footer/>
+                            </div>
                         </form>
-                        <Footer />
                     </div>
                 </div>
             </div>

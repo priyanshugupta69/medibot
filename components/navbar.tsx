@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,36 +9,55 @@ const Navigation = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const NavLinks = ({ isMobile}:any) => (
+    <div className={`${isMobile ? 'flex flex-col items-start mt-4 space-y-2 ml-2' : 'hidden md:flex flex-1 justify-center items-center space-x-8'}`}>
+      <Link href="/">
+        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
+          Home
+        </span>
+      </Link>
+      <Link href="/about">
+        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
+          About
+        </span>
+      </Link>
+      <Link href="/services">
+        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
+          Services
+        </span>
+      </Link>
+      <Link href="/contact">
+        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
+          Contact
+        </span>
+      </Link>
+    </div>
+  );
+
   return (
-    <nav className="bg-gray-800 p-4 fixed top-0 left-0 right-0 z-50">
-      <div className='container mx-auto flex justify-between items-center'>
-        <div className={`flex items-center ${isOpen ? 'w-full justify-center' : ''}`}>
-          <span className='text-[#B1D4E0] font-serif text-lg transition-transform duration-300 ease-in-out transform hover:scale-110'>
+    <nav className="bg-gray-800 p-2 fixed top-0 left-0 right-0 z-50">
+      <div className='container mx-auto flex justify-between items-center w-11/12'>
+        <div className={`flex items-center ${isOpen ? 'w-full justify-center' : 'inline-block'}`}>
+          <span className='text-[#B1D4E0] font-serif text-lg transition-transform duration-300 ease-in-out transform hover:scale-110 '>
             Huego
           </span>
         </div>
-        <div className="hidden md:flex flex-1 justify-center items-center space-x-8">
-          <Link href="/">
-            <span className="text-white transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-              Home
-            </span>
-          </Link>
-          <Link href="/about">
-            <span className="text-white transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-              About
-            </span>
-          </Link>
-          <Link href="/services">
-            <span className="text-white transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-              Services
-            </span>
-          </Link>
-          <Link href="/contact">
-            <span className="text-white transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-              Contact
-            </span>
-          </Link>
-        </div>
+        <NavLinks isMobile={false} />
         <div className="md:hidden flex items-center">
           <button onClick={toggleMenu} className="text-white focus:outline-none">
             <svg
@@ -67,37 +86,13 @@ const Navigation = () => {
           </button>
         </div>
       </div>
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="flex flex-col items-start mt-4 space-y-2">
-            <Link href="/">
-              <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-                Home
-              </span>
-            </Link>
-            <Link href="/about">
-              <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-                About
-              </span>
-            </Link>
-            <Link href="/services">
-              <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-                Services
-              </span>
-            </Link>
-            <Link href="/contact">
-              <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-                Contact
-              </span>
-            </Link>
-          </div>
-        </div>
-      )}
+      {isOpen && <NavLinks isMobile={true} />}
     </nav>
   );
 };
 
 export default Navigation;
+
 
 
 
