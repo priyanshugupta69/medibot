@@ -18,12 +18,12 @@ const ChatApp: React.FC = () => {
     const [opacity, setOpacity] = useState<string>('');
     const [suggestions, setSuggestions] = useState<any>([]);
     const [revealed, setRevealed] = useState(false);
-
+    const [suggestUse, setSuggestionUse] = useState(true);
     useEffect(() => {
         // Simulate reveal on page load after a delay
         const timer = setTimeout(() => {
             setRevealed(true);
-        }, 100);
+        }, 0);
 
         return () => clearTimeout(timer);
     }, []);
@@ -38,9 +38,13 @@ const ChatApp: React.FC = () => {
         setSuggestions(getRandomElements(numberOfSuggestions));
     }, []);
 
-    useEffect(() => { sendMessage() }, [inputText]);
+    useEffect(() => { if (!suggestUse) { 
+        sendMessage();
+        setSuggestionUse(true);
+    } }, [inputText]);
     const runSuggestion = async (suggestion: any) => {
         setInputText(suggestion);
+        setSuggestionUse(false);
         // sendMessage();
     }
     const sendMessage = async () => {
@@ -85,24 +89,23 @@ const ChatApp: React.FC = () => {
                 setDisabled(false);
                 setInputText('');
             }
-
-            // Simulate server response (replace with actual server request)
-
-
         }
+        setloader(false)
+        setDisabled(false);
+        setInputText('');
     };
     return (
         <div>
-            <div className={`${opacity} z-[10] w-full`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
+            <div className={`${opacity} w-full`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
                 <div className='flex items-center justify-start ml-[-10%]' style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
                     <span><div className="text-5xl md:text-8xl text-[#323557] font-serif">Huego</div></span>
                 </div>
                 <div className='absolute text-center w-full'>
-                    <p className={`text-[#323557] reveal-text ${revealed ? 'revealed' : ''}`}>
+                    {/* <p className={`text-[#323557] reveal-text ${revealed ? 'revealed' : ''}`}>
                         I am a knowledge agent made to help you with medical questions you have !
-                    </p>
-                    <div className={`flex w-full reveal-text ${revealed ? 'revealed' : ''}`} style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    </p> */}
+                    <div className={`flex w-full reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
                         {suggestions.map((suggestion: any, index: number) => {
                             return (<div key={index} className='text-[#323557] my-2 mx-4 p-2 rounded-2xl w-3/12 lg:w-1/12' style={{ border: '1px solid #323557' }} onClick={() => { runSuggestion(suggestion) }}>
                                 {suggestion}
@@ -154,7 +157,7 @@ const ChatApp: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="footer w-full" style={{ position: 'fixed', bottom: 0, backgroundColor: '#ffffff' }}>
+                    <div className="footer w-full z-[100]" style={{ position: 'fixed', bottom: 0, backgroundColor: '#ffffff' }}>
                         <form onSubmit={sendMessage} style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
                             <div className='lg:w-8/12 w-11/12 flex'>
                                 <input
