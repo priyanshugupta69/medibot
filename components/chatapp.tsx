@@ -67,9 +67,9 @@ const ChatApp: React.FC = () => {
     return (
         <div>
             <div className={`${opacity} z-[10]`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '50%' }}>
-                <div className='lg:flex lg:items-center'>
+                <div className='flex items-center'>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                    <span><div className="text-5xl md:text-8xl text-[#4a4f82] font-serif">Huego</div></span>
+                    <span><div className="text-5xl md:text-8xl text-[#323557] font-serif">Huego</div></span>
                 </div>
             </div>
             <div className="mx-0 px-0">
