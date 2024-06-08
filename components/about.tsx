@@ -6,7 +6,7 @@ const About: React.FC = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl">
         <h1 className="text-2xl font-bold mb-4">About Us</h1>
         <p className="text-gray-700 mb-4">
-          With Huego.Ai at your fingertips, let&aposs disrupt the sick care system with the power of AI. Huego is powered by clinical vignettes, which typically involve a brief description of a patient&poss medical history, symptoms, and physical exam findings to illustrate a particular medical condition or situation. This can be useful in medical education and training, as well as in clinical assessments and decision-making.
+          With Huego.Ai at your fingertips, let&apos;s disrupt the sick care system with the power of AI. Huego is powered by clinical vignettes, which typically involve a brief description of a patient&apos;s medical history, symptoms, and physical exam findings to illustrate a particular medical condition or situation. This can be useful in medical education and training, as well as in clinical assessments and decision-making.
         </p>
         <p className="text-gray-700 mb-4">
           Clinical vignettes can come in different forms and may focus on various aspects of patient care, such as diagnostic evaluation, treatment options, management strategies, ethical considerations, or communication skills. They may also vary in complexity and scope, depending on the intended audience and purpose.
