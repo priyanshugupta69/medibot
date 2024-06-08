@@ -105,7 +105,7 @@ const ChatApp: React.FC = () => {
                     {/* <p className={`text-[#323557] reveal-text ${revealed ? 'revealed' : ''}`}>
                         I am a knowledge agent made to help you with medical questions you have !
                     </p> */}
-                    <div className={`flex w-full reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
+                    <div className={`flex w-full mt-2 reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
                         {suggestions.map((suggestion: any, index: number) => {
                             return (<div key={index} className='text-[#323557] text-left my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-1/12' style={{ border: '1px solid #323557' }} onClick={() => { runSuggestion(suggestion) }}>
                                 {suggestion}
@@ -117,15 +117,6 @@ const ChatApp: React.FC = () => {
             <div className="mx-0 px-0">
                 <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{ backgroundColor: '#ffffff' }} className='w-full'>
-                        {messages.length != 0 &&
-                            <div
-                                className='flex-1 text-center py-1 w-full m-auto'
-                                style={{ position: 'fixed', backgroundColor: '#ffffff', zIndex: 10 }}>
-                                <p className='bg-black text-white text-center m-auto text-xl py-2 px-4 rounded-full font-serif'
-                                    style={{ width: 'max-content' }}>
-                                    Huego.ai
-                                </p>
-                            </div>}
                         <div className="flex-1 overflow-y-auto m-auto mt-20 mb-20 lg:w-8/12 w-11/12">
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
