@@ -1,9 +1,12 @@
 'use client'
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import './navbar.css'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -24,28 +27,22 @@ const Navigation = () => {
     };
   }, []);
 
-  const NavLinks = ({ isMobile}:any) => (
+  const NavLinks = ({ isMobile }: any) => (
     <div className={`${isMobile ? 'flex flex-col items-start mt-4 space-y-2 ml-2' : 'hidden md:flex flex-1 justify-center items-center space-x-8'}`}>
-      <Link href="/">
-        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-          Home
-        </span>
-      </Link>
-      <Link href="/about">
-        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-          About
-        </span>
-      </Link>
-      <Link href="/services">
-        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-          Services
-        </span>
-      </Link>
-      <Link href="/contact">
-        <span className="block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0]">
-          Contact
-        </span>
-      </Link>
+      {[
+        { href: '/', label: 'Home' },
+        { href: '/about', label: 'About' },
+        { href: '/services', label: 'Services' },
+        { href: '/contact', label: 'Contact' },
+      ].map(({ href, label }) => (
+        <Link key={href} href={href}>
+          <span
+            className={`block text-white p-2 transition-colors duration-300 ease-in-out hover:text-[#B1D4E0] underline-custom ${pathname === href ? 'underline-active' : ''}`}
+          >
+            {label}
+          </span>
+        </Link>
+      ))}
     </div>
   );
 
@@ -92,7 +89,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-
-
-
