@@ -107,7 +107,7 @@ const ChatApp: React.FC = () => {
                     </p> */}
                     <div className={`flex w-full reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
                         {suggestions.map((suggestion: any, index: number) => {
-                            return (<div key={index} className='text-[#323557] my-2 mx-4 p-2 rounded-2xl w-3/12 lg:w-1/12' style={{ border: '1px solid #323557' }} onClick={() => { runSuggestion(suggestion) }}>
+                            return (<div key={index} className='text-[#323557] text-left my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-1/12' style={{ border: '1px solid #323557' }} onClick={() => { runSuggestion(suggestion) }}>
                                 {suggestion}
                             </div>)
                         })}
