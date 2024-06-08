@@ -93,7 +93,7 @@ const ChatApp: React.FC = () => {
                                         </div>
                                     )}
                                     {msg.answer && (
-                                        <div className="flex items-start mb-6">
+                                        <div className="flex items-start mb-10">
                                             <img
                                                 src="/human_2.png" // Replace with the actual path to the profile picture
                                                 className="w-8 m-2 ml-0 rounded-full"
@@ -115,32 +115,37 @@ const ChatApp: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="footer w-full" style={{ position: 'fixed', bottom: 50, backgroundColor: '#ffffff' }}>
-                        <form onSubmit={sendMessage} style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
-                            <div className='lg:w-8/12 w-11/12 flex'>
-                                <input
-                                    type="text"
-                                    value={inputText}
-                                    onChange={(e) => setInputText(e.target.value)}
-                                    className="w-11/12 px-4 py-2 rounded-full border"
-                                    placeholder="Type your message..."
-                                    disabled={disabled}
-                                />
-                                <button
-                                    type="submit"
-                                    onClick={sendMessage}
-                                    className="px-4 py-2 ml-2 md:ml-6 bg-[#323557] text-white rounded-full"
-                                    style={{ float: 'right' }}
-                                    disabled={disabled}
-                                >
-                                    Send
-                                </button>
-                            </div>
-                            <div className='footer h-0 w-full' style={{ position: 'fixed', bottom: 50, backgroundColor: '#ffffff' }}>
-                               <Footer/>
-                            </div>
-                        </form>
+                    <div className="w-full fixed bottom-0 bg-white">
+                        <div className="w-full bg-white pb-10">
+                            <form
+                                onSubmit={sendMessage}
+                                className="mt-4 w-full flex items-center justify-center"
+                            >
+                                <div className="lg:w-8/12 w-11/12 flex">
+                                    <input
+                                        type="text"
+                                        value={inputText}
+                                        onChange={(e) => setInputText(e.target.value)}
+                                        className="w-11/12 px-4 py-2 rounded-full border"
+                                        placeholder="Type your message..."
+                                        disabled={disabled}
+                                    />
+                                    <button
+                                        type="submit"
+                                        onClick={sendMessage}
+                                        className="px-4 py-2 ml-2 md:ml-6 bg-[#323557] text-white rounded-full"
+                                        disabled={disabled}
+                                    >
+                                        Send
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="w-full bg-white">
+                            <Footer />
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
