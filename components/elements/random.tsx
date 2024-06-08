@@ -1,11 +1,11 @@
 const suggestion = [
     "Symptoms of a stroke",
-    'Treatment for cancer',
+    'What cures insomnia quickly?',
     "how to deal with vitiligo",
-    "How do I treat ulcers?",
-    "What to do in pregnancy",
-    "Treatment for simple cold",
-    "Treatment of Headache",
+    "How do I treat nausea?",
+    "How do I treat migraines?",
+    "How do I treat arthritis?",
+    "What can treat eczema?",
     "Treatment for pain in eyes",
 ];
 
