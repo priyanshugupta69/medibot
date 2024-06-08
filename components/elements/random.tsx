@@ -1,7 +1,7 @@
 const suggestion = [
-    "What are the symptoms of a stroke",
+    "Symptoms of a stroke",
     'Treatment for cancer',
-    "What is advised for a patient with vitiligo",
+    "how to deal with vitiligo",
     "How do I treat ulcers?",
     "What to do in pregnancy",
     "Treatment for simple cold",
