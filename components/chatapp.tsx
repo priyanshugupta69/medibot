@@ -159,7 +159,7 @@ const ChatApp: React.FC = () => {
                                         type="text"
                                         value={inputText}
                                         onChange={(e) => setInputText(e.target.value)}
-                                        className="w-11/12 px-4 py-2 rounded-full border"
+                                        className="w-11/12 px-4 py-2 rounded-full border border-[#028391]"
                                         placeholder="Ask Huego..."
                                         disabled={disabled}
                                     />
