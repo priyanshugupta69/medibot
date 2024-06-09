@@ -149,7 +149,7 @@ const ChatApp: React.FC = () => {
                         </div>
                     </div>
                     <div className="w-full fixed bottom-0 bg-white">
-                        <div className="w-full bg-white pb-10">
+                        <div className={`w-full bg-white ${messages.length==0?'pb-52 md:pb-40': 'pb-10'}`}>
                             <form
                                 onSubmit={sendMessage}
                                 className="mt-4 w-full flex items-center justify-center"
