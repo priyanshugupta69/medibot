@@ -116,6 +116,27 @@ const ChatApp: React.FC = () => {
                             </div>)
                         })}
                     </div>
+                    <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
+                                <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
+                                    <input
+                                        type="text"
+                                        value={inputText}
+                                        onChange={(e) => setInputText(e.target.value)}
+                                        className="w-full px-4 py-2 outline-none"
+                                        placeholder="Ask Huego..."
+                                        disabled={disabled}
+                                    />
+                                    <button
+                                        type="submit"
+                                        onClick={sendMessage}
+                                        className="px-4 py-2 bg-[#323557] text-white w-12"
+                                        disabled={disabled}
+                                    >
+                                        <img src='/send.svg'></img>
+                                    </button>
+                                </div>
+                            </form>
+                    
                 </div>
             </div>
             <div className="mx-0 px-0">
@@ -154,7 +175,7 @@ const ChatApp: React.FC = () => {
                     </div>
 
                     <div className="w-full fixed bottom-0 bg-white">
-                        <div className={`w-full bg-white ${messages.length === 0 ? 'pb-52 md:pb-40' : 'pb-10'}`}>
+                        <div className={`w-full bg-white mb-10 ${messages.length === 0 ?'hidden': ''}`}>
                             <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
                                 <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
                                     <input
