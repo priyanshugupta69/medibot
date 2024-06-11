@@ -33,6 +33,7 @@ const Navigation = () => {
         { href: '/', label: 'Home' },
         { href: '/about', label: 'About' },
         { href: '/privacy', label: 'Privacy' },
+        { href: '/terms', label: 'Terms' },
         { href: '/contact', label: 'Contact' },
       ].map(({ href, label }) => (
         <Link key={href} href={href}>
