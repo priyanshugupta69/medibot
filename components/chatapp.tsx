@@ -101,8 +101,8 @@ const ChatApp: React.FC = () => {
             <div className={`${opacity} w-full`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
                 <div className='flex items-center justify-start' style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                <div className="flex flex-col space-y-6"><div className='text-5xl md:text-8xl text-[#323557] font-serif'>Huego</div>
-                    <div className='flex justify-center p-1 font-semibold rounded-lg font-serif'>I&apos;m your personal AI-powered health assistant.</div>
+                <div className="flex flex-col space-y-2"><div className='text-5xl md:text-8xl text-[#323557] font-serif'>Huego</div>
+                    <div className='flex justify-center text-xl font-semibold font-serif'>I&apos;m your personal AI-powered health assistant.</div>
                 </div>
                 </div>
                 <div className='absolute text-center w-full'>
