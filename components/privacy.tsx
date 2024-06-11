@@ -195,6 +195,15 @@ const PrivacyPolicy = () => {
               </ul>
             </p>
           </p>
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.5. Legal and regulatory requirements and proceedings. </h3>We may use the personal information in connection with legal and regulatory proceedings and requirements. For example, we may need the personal information to enforce our corporate reporting obligations, or to comply with applicable laws.</div>
+          </p>
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.6. Enforce our rights.</h3>When you access or use our Platform or Services, you are bound by our Terms of Use and this Privacy Policy. To ensure you comply with them, we may use your personal information to monitor, investigate, prevent and/or mitigate violations of our Terms of Use as well as enforce our agreements with third parties and business partners.</div>
+          </p>
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.7. Other purposes disclosed at the time of collection. </h3>From time to time, we may use personal information for a specific purpose not contemplated by this Privacy Policy. In such an event, we will specifically disclose that use to you.</div>
+          </p>
 
         </section>
       </div>
