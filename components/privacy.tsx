@@ -116,7 +116,87 @@ const PrivacyPolicy = () => {
 
 
         </section>
-        {/* Repeat for all sections */}
+
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">2. How We Use Your Personal Information</h2>
+          <p>In addition to the uses described above, we may collect and use personal information to:</p>
+
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.1. Provide, maintain, improve and develop the Platform and Services. </h3>We may use the personal information to provide, maintain, improve and develop the Platform and Services. For example, we:</div>
+            <p>
+              <ul className="list-disc ml-4 p-2">
+                <li className="">
+                  Enable you to create Accounts or otherwise access and use the Platform and Services (e.g., remember information so that you will not have to re-enter it during your visit or the next time you visit),
+                </li>
+                <li className="">
+                  Fulfill your requests and process payments (e.g., to allow you to order medicine from Pharmacies and have it delivered to you, or to provide you with information that you request),
+                </li>
+                <li className="">
+                  Provide custom, personalized content, and information (e.g. “most popular near you” and “since you enjoy” features)
+                </li>
+                <li className="">
+                  Perform analytics, detect activity patterns on our Platform and Services, and otherwise research usage, and
+                </li>
+                <li className="">
+                  Test and develop new features and functionality and otherwise enhance the Platform and Services.
+                </li>
+              </ul>
+            </p>
+          </p>
+
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.2. Maintain the safety, stability, and security of our Platform and Services.</h3>We may use the personal information to maintain the safety and security of our Platform and Services. For example, we:</div>
+            <p>
+              <ul className="list-disc ml-4 p-2">
+                <li className="">
+                  Detect or prevent fraud, abuse, or other harmful activities,
+                </li>
+                <li className="">
+                  Diagnose or fix technology problems,
+                </li>
+                <li className="">
+                  Conduct security investigations and risk assessments, and
+
+                </li>
+                <li className="">
+                  Improve and enforce our security measures.
+
+                </li>
+              </ul>
+            </p>
+          </p>
+
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.3. Communications with you to provide support and other important messages. </h3>We may use personal information to communicate important messages to you and/or to provide you with support. For example, we might send you service-related emails or messages (e.g., user Account verification, changes or updates to features of the Platform or Services, technical and security notices) and other communications from or about Huego.</div>
+
+          </p>
+          <p>
+            <div><h3 className="text-xl font-semibold mb-2 pt-2">2.4. Provide, personalize, measure and improve our advertising and marketing.</h3>We may use personal information to provide, personalize, measure and improve our advertising and marketing. For example, we:</div>
+            <p>
+              <ul className="list-disc ml-4 p-2">
+                <li className="">
+                 Administer rewards, surveys, sweepstakes, contests, or other promotional activities or events sponsored or managed by Huego or its third-party partners
+                </li>
+                <li className="">
+                 Inform you of products, programs, services, and promotions that we believe may be of interest to you, including, without limitation, through emails and push notifications,
+                </li>
+                <li className="">
+                Permit you to refer us to your friends so that we may send them a promotional offer through the Platform. If you wish to use this feature, you may be required to provide us with, and we may use, your friend&apos;s name, email address, and other information you share with us. By using this functionality, you affirm that you are entitled to use and provide us with your friend&apos;s name and email address for this purpose. We will use that information to send an email inviting the friend to visit the Platform and for any other purposes disclosed at the time of your participation in the program,
+
+                </li>
+                <li className="">
+                Determine the effectiveness of our Services and our promotional campaigns, and
+
+                </li>
+                <li>
+                Identify and contact you across multiple devices.
+                </li>
+              </ul>
+            </p>
+          </p>
+
+        </section>
       </div>
     </div>
   );
