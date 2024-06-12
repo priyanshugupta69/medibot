@@ -141,7 +141,7 @@ const ChatApp: React.FC = () => {
             </div>
             <div className="mx-0 px-0">
                 <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ backgroundColor: '#ffffff' }} className={`w-full ${messages.length == 0? 'hidden': ''}`}>
+                    <div className={`w-full ${messages.length == 0? 'hidden': ''}`}>
                         <div className="flex-1 overflow-y-auto m-auto mt-20 mb-20 lg:w-8/12 w-11/12">
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
@@ -198,7 +198,7 @@ const ChatApp: React.FC = () => {
                             </form>
                         </div>
                         <div className="w-full bg-white">
-                            <Footer />
+                            <Footer msgLen = {messages.length} />
                         </div>
                     </div>
 
