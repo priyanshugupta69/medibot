@@ -101,8 +101,8 @@ const ChatApp: React.FC = () => {
             <div className={`${opacity} w-full`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
                 <div className='flex items-center justify-start' style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                <div className="flex flex-col space-y-2"><div className='text-5xl md:text-8xl text-[#323557] font-serif'>Huego</div>
-                    <div className='flex justify-center text-xl font-semibold font-serif'>I&apos;m your personal AI-powered health assistant.</div>
+                <div className="flex flex-col space-y-2"><div className='text-xl md:text-2xl text-[#323557] font-serif'>Huego</div>
+                    <div className='flex justify-center text-2xl md:4xl font-semibold font-serif'>I&apos;m your personal AI-powered health assistant.</div>
                 </div>
                 </div>
                 <div className='absolute text-center w-full'>
@@ -141,7 +141,7 @@ const ChatApp: React.FC = () => {
             </div>
             <div className="mx-0 px-0">
                 <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ backgroundColor: '#ffffff' }} className='w-full'>
+                    <div style={{ backgroundColor: '#ffffff' }} className={`w-full ${messages.length == 0? 'hidden': ''}`}>
                         <div className="flex-1 overflow-y-auto m-auto mt-20 mb-20 lg:w-8/12 w-11/12">
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
