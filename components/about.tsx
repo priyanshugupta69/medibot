@@ -16,7 +16,7 @@ const About: React.FC = () => {
         </p>
         <p className='font-semibold'>
           “In every act of care, we sow the seeds of hope and compassion , let’s make access to healthcare ubiquitous.” -
-          <div className='mt-2'>
+          <div className='mt-2 font-normal'>
             Tanner Ahmed<br />
             Founder, Huego Healthcare Inc
           </div>
