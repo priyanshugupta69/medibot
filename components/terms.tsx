@@ -1,6 +1,6 @@
 const TermsOfUse = () => {
   return (
-    <div className="p-10 pt-32 md:p-32 text-justify bg-white text-gray-800">
+    <div className="p-10 pt-32 md:p-32 text-justify text-gray-800">
       <h1 className="text-4xl font-bold mb-4">Terms of Use</h1>
       <p className="mb-4 mt-8">
         HUEGO HEALTHCARE Inc. and its subsidiaries and affiliates (&ldquo;HUEGO,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) own and operate certain websites, including related subdomains; our mobile, tablet and other smart device applications; application program interfaces; in-store kiosks or other online services; other tools, technology and programs (collectively, the &ldquo;Platform&rdquo;) and all associated services (collectively, the &ldquo;Services&rdquo;); in each case, that reference and incorporate these Terms of Use.
