@@ -52,7 +52,7 @@ const Navigation = () => {
       <div className='container mx-auto flex justify-between items-center w-11/12'>
         <div className={`flex items-center ${isOpen ? 'w-full justify-center' : 'inline-block'}`}>
           <span className='text-[#B1D4E0] font-serif text-lg transition-transform duration-300 ease-in-out transform hover:scale-110 '>
-            Huego
+            <Link href={'/'}>Huego</Link> 
           </span>
         </div>
         <NavLinks isMobile={false} />
