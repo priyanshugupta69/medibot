@@ -30,7 +30,6 @@ const About = () => {
           </p>
         </section>
       </div>
-
     </div>
   );
 };
