@@ -111,8 +111,8 @@ const ChatApp: React.FC = () => {
                     </p> */}
                     <div className={`flex w-full mt-2 reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
                         {suggestions.map((suggestion: any, index: number) => {
-                            return (<div key={index} className='text-[#323557] text-left text-sm my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-3/12' style={{ border: '1px solid #B1D4E0' }} onClick={() => { runSuggestion(suggestion) }}>
-                                <p className='line line-clamp-3'>{suggestion}</p>
+                            return (<div key={index} className='text-[#323557] text-left text-sm my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-2/12' style={{ border: '1px solid #B1D4E0' }} onClick={() => { runSuggestion(suggestion) }}>
+                                <p className='line-clamp-3'>{suggestion}</p>
                             </div>)
                         })}
                     </div>
@@ -147,7 +147,7 @@ const ChatApp: React.FC = () => {
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
                                         <div className="mb-2 text-right">
-                                            <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'>{msg.question}</div>
+                                            <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'><p className = 'text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
@@ -159,7 +159,7 @@ const ChatApp: React.FC = () => {
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'>{msg.answer}</div>
+                                                <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'><p className='text-justify'>{msg.answer}</p></div>
                                             </div>
 
                                         </div>
