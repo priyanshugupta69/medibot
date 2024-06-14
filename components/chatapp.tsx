@@ -115,7 +115,7 @@ const ChatApp: React.FC = () => {
                         <div className='flex justify-center text-xl md:3xl font-serif'>I&apos;m your personal AI-powered health assistant.</div>
                     </div>
                 </div>
-                <div className='absolute text-center w-full'>
+                <div className='absolute mt-5 text-center w-full'>
                     <div className='w-11/12 lg:w-5/12 m-auto rounded-2xl' style={{ border: '1px solid #B1D4E0' }}>
                         <Carousel
                             opts={{
