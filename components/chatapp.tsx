@@ -4,6 +4,15 @@ import axios from 'axios';
 import Typewriter from './typewriter';
 import Footer from './footer';
 import { getRandomElements } from './elements/random';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+import { Card, CardContent } from './ui/card';
 
 interface Message {
     question: string;
@@ -31,9 +40,9 @@ const ChatApp: React.FC = () => {
 
     useEffect(() => {
         const screenWidth = window.screen.width;
-        var numberOfSuggestions = 3;
+        var numberOfSuggestions = 6;
         if (screenWidth < 467) {
-            numberOfSuggestions = 2;
+            numberOfSuggestions = 6;
         }
         setSuggestions(getRandomElements(numberOfSuggestions));
     }, []);
@@ -98,50 +107,70 @@ const ChatApp: React.FC = () => {
     };
     return (
         <div>
-            <div className={`${opacity} w-full`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%', top: '40%' }}>
+
+            <div className={`${opacity} w-full top-2/12 lg:top-4/12`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%' }}>
                 <div className='flex items-center justify-start' style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                <div className="flex flex-col space-y-2"><div className='text-xl md:text-2xl text-[#323557] font-serif'>Huego</div>
-                    <div className='flex justify-center text-2xl md:4xl font-semibold font-serif'>I&apos;m your personal AI-powered health assistant.</div>
-                </div>
+                    <div className="flex flex-col space-y-2"><div className='text-4xl text-[#323557] font-serif font-semibold'>Huego</div>
+                        <div className='flex justify-center text-xl md:3xl font-serif'>I&apos;m your personal AI-powered health assistant.</div>
+                    </div>
                 </div>
                 <div className='absolute text-center w-full'>
-                    {/* <p className={`text-[#323557] reveal-text ${revealed ? 'revealed' : ''}`}>
-                        I am a knowledge agent made to help you with medical questions you have !
-                    </p> */}
-                    <div className={`flex w-full mt-2 reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
-                        {suggestions.map((suggestion: any, index: number) => {
-                            return (<div key={index} className='text-[#323557] text-left text-sm my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-3/12' style={{ border: '1px solid #B1D4E0' }} onClick={() => { runSuggestion(suggestion) }}>
-                                <p className='line line-clamp-3'>{suggestion}</p>
-                            </div>)
-                        })}
+                    <div className='w-11/12 lg:w-5/12 m-auto rounded-2xl' style={{ border: '1px solid #B1D4E0' }}>
+                        <Carousel
+                            opts={{
+                                align: "start",
+                                loop: true,
+                            }}
+                            plugins={[
+                                Autoplay({
+                                    delay: 3000,
+                                }),
+                            ]}
+                        >
+                            <CarouselContent>
+                                {suggestions.map((suggestion: any, index: number) => {
+                                    return <CarouselItem key={index} onClick={() => { runSuggestion(suggestion) }}>
+                                        <div className="p-1">
+                                            <Card>
+                                                <CardContent className='text-left'>
+                                                    <span className="text-[#323557] text-left text-xs lg:text-sm p-4" style={{ cursor: 'pointer' }}>{suggestion}</span>
+                                                </CardContent>
+                                            </Card>
+                                        </div>
+                                    </CarouselItem>
+                                })}
+                            </CarouselContent>
+                            {/* <CarouselPrevious />
+                            <CarouselNext /> */}
+                        </Carousel>
                     </div>
                     <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
-                                <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
-                                    <input
-                                        type="text"
-                                        value={inputText}
-                                        onChange={(e) => setInputText(e.target.value)}
-                                        className="w-full px-4 py-2 outline-none"
-                                        placeholder="Ask Huego..."
-                                        disabled={disabled}
-                                    />
-                                    <button
-                                        type="submit"
-                                        onClick={sendMessage}
-                                        className="px-4 py-2 bg-[#323557] text-white w-12"
-                                        disabled={disabled}
-                                    >
-                                        <img src='/send.svg'></img>
-                                    </button>
-                                </div>
-                            </form>
-                    
+                        <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
+                            <input
+                                type="text"
+                                value={inputText}
+                                onChange={(e) => setInputText(e.target.value)}
+                                className="w-full px-4 py-2 outline-none"
+                                placeholder="Ask Huego..."
+                                disabled={disabled}
+                            />
+                            <button
+                                type="submit"
+                                onClick={sendMessage}
+                                className="px-4 py-2 bg-[#323557] text-white w-12"
+                                disabled={disabled}
+                            >
+                                <img src='/send.svg'></img>
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
             <div className="mx-0 px-0">
                 <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
-                    <div className={`w-full ${messages.length == 0? 'hidden': ''}`}>
+                    <div className={`w-full ${messages.length == 0 ? 'hidden' : ''}`}>
                         <div className="flex-1 overflow-y-auto m-auto mt-20 mb-20 lg:w-8/12 w-11/12">
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
@@ -174,8 +203,8 @@ const ChatApp: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="w-full fixed bottom-0 bg-white">
-                        <div className={`w-full bg-white mb-10 ${messages.length === 0 ?'hidden': ''}`}>
+                    <div className="w-full bg-white">
+                        <div className={`w-full bg-white mb-10 ${messages.length === 0 ? 'hidden' : ''}`}>
                             <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
                                 <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
                                     <input
@@ -198,13 +227,14 @@ const ChatApp: React.FC = () => {
                             </form>
                         </div>
                         <div className="w-full bg-white">
-                            <Footer msgLen = {messages.length} />
+                            <Footer />
                         </div>
                     </div>
 
 
                 </div>
             </div>
+
         </div>
 
     );

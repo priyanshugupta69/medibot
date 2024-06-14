@@ -1,6 +1,8 @@
+import Footer from "./footer";
+
 const PrivacyPolicy = () => {
   return (
-    <div className="container mx-auto p-10 md:p-32 pt-32 py-10 text-justify">
+    <div className="container mx-auto p-10 md:p-32 pt-20 lg:pt-32 py-10 text-justify">
       <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
       <div className="space-y-6">
         <section>
@@ -208,25 +210,26 @@ const PrivacyPolicy = () => {
         </section>
 
         <section>
-        <h2 className="text-2xl font-semibold mb-4">3. Our Sharing and Disclosure of Personal Information</h2>
-        <p>We disclose personal information to the following types of third parties:</p>
-        <p>
+          <h2 className="text-2xl font-semibold mb-4">3. Our Sharing and Disclosure of Personal Information</h2>
+          <p>We disclose personal information to the following types of third parties:</p>
+          <p>
             <div><h3 className="text-xl font-semibold mb-2 pt-2">3.1. Store Sharing.</h3>We disclose personal information to the Stores you order from and third parties engaged by those Stores (e.g. point of sale providers or their own delivery personnel), as needed to fulfill your orders, including communicating with you about the status of your order or canceled items. If you make a purchase from a store that offers loyalty or rewards programs through our Platform, we may disclose your personal information to the Store as needed to facilitate your participation in the Store&apos;s loyalty or rewards programs, including tracking points and redemptions. In some cases, you may also affirmatively opt-in to share your information directly with the Stores as will be disclosed on the Platform.</div>
-        </p>
-        <p>
+          </p>
+          <p>
             <div><h3 className="text-xl font-semibold mb-2 pt-2">3.2. Other Third Parties necessary to complete your order or to enable your use of the Platform and Services.</h3>In addition to Stores you order from, we disclose personal information to other third parties as needed to fulfill your orders, including, without limitation, delivery providers and payment processors. If you are a guest utilizing the group order feature, we also share your name and order information with the Huego Account owner in order to complete the order.</div>
-        </p>
-        <p>
+          </p>
+          <p>
             <div><h3 className="text-xl font-semibold mb-2 pt-2">3.3. Information provided to third parties in connection with our enterprise customers.</h3>If your company, university or organization participates in one of our enterprise programs, we may share some of your information with that organization including your name, student ID number, contact details, order history, and other information as required to enable use by you and the organization of Store Services. If you are a campus user, we also share information with Store service providers that operate stores and other pharmacy and grocery ordering and delivery services on your campus.</div>
-        </p>
-        <p>
+          </p>
+          <p>
             <div><h3 className="text-xl font-semibold mb-2 pt-2">3.4. Service providers and contractors.</h3>We disclose personal information to third parties that provide services for us or on our behalf, such as website hosting, data analysis, infrastructure provisioning, IT services, customer service, email delivery services, fraud detection, security monitoring, advertising and marketing, and other similar services.</div>
-        </p>
-        <p>
+          </p>
+          <p>
             <div><h3 className="text-xl font-semibold mb-2 pt-2">3.5. Analytics providers.</h3>We share personal information with third-party analytics providers to better understand the demographics of our users and visitors and to personalize, enhance and improve our Platform and Services.</div>
-        </p>
+          </p>
         </section>
       </div>
+
     </div>
   );
 };
