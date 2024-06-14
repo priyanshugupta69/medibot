@@ -202,8 +202,7 @@ const ChatApp: React.FC = () => {
                             </div>
                         </div>
                     </div>
-
-                    <div className="w-full bg-white">
+                    <div className="w-full fixed bottom-0 bg-white">
                         <div className={`w-full bg-white mb-10 ${messages.length === 0 ? 'hidden' : ''}`}>
                             <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
                                 <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
@@ -230,6 +229,7 @@ const ChatApp: React.FC = () => {
                             <Footer />
                         </div>
                     </div>
+
 
 
                 </div>
