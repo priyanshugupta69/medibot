@@ -111,8 +111,8 @@ const ChatApp: React.FC = () => {
                     </p> */}
                     <div className={`flex w-full mt-2 reveal-text ${revealed ? 'revealed' : ''}`} style={{ cursor: 'pointer', alignItems: 'center', justifyContent: 'center' }}>
                         {suggestions.map((suggestion: any, index: number) => {
-                            return (<div key={index} className='text-[#323557] text-left text-sm my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-1/12' style={{ border: '1px solid #B1D4E0' }} onClick={() => { runSuggestion(suggestion) }}>
-                                {suggestion}
+                            return (<div key={index} className='text-[#323557] text-left text-sm my-2 mx-4 p-4 rounded-2xl w-3/12 lg:w-3/12' style={{ border: '1px solid #B1D4E0' }} onClick={() => { runSuggestion(suggestion) }}>
+                                <p className='line line-clamp-3'>{suggestion}</p>
                             </div>)
                         })}
                     </div>
