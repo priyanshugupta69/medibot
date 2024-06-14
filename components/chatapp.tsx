@@ -147,7 +147,7 @@ const ChatApp: React.FC = () => {
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
                                         <div className="mb-2 text-right">
-                                            <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'>{msg.question}</div>
+                                            <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'><p className='text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
@@ -159,7 +159,7 @@ const ChatApp: React.FC = () => {
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'>{msg.answer}</div>
+                                                <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'><p className='text-justify'>{msg.answer}</p></div>
                                             </div>
 
                                         </div>
