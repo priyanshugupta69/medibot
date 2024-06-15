@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Typewriter from './typewriter';
 import Footer from './footer';
-import { getRandomElements } from './elements/random';
+import { GetServerSideProps } from 'next';
 import {
     Carousel,
     CarouselContent,
@@ -13,13 +13,14 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { Card, CardContent } from './ui/card';
+import { getCookieCustom, setCookieCustom } from '@/lib/cookie';
 
 interface Message {
     question: string;
     answer: string;
 }
 
-const ChatApp: React.FC = () => {
+const ChatApp = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState<string>('');
     const [loader, setloader] = useState<boolean>(false)
@@ -28,8 +29,24 @@ const ChatApp: React.FC = () => {
     const [suggestions, setSuggestions] = useState<any>([]);
     const [revealed, setRevealed] = useState(false);
     const [suggestUse, setSuggestionUse] = useState(true);
+
     useEffect(() => {
         // Simulate reveal on page load after a delay
+        const pullSuggestions = async () => {
+            const data  = await axios.get('https://api.huego.ai/suggestions?count=5')
+            setCookieCustom("suggestions", data.data);
+            setSuggestions(data.data);
+        }
+        if (!getCookieCustom("suggestions")) {
+            console.log(1);
+            
+            pullSuggestions();
+        } else {
+            console.log(2);
+            
+            const suggestion = JSON.parse(getCookieCustom('suggestions') as string);
+            setSuggestions(suggestion);
+        }
         const timer = setTimeout(() => {
             setRevealed(true);
         }, 0);
@@ -37,15 +54,6 @@ const ChatApp: React.FC = () => {
         return () => clearTimeout(timer);
     }, []);
 
-
-    useEffect(() => {
-        const screenWidth = window.screen.width;
-        var numberOfSuggestions = 6;
-        if (screenWidth < 467) {
-            numberOfSuggestions = 6;
-        }
-        setSuggestions(getRandomElements(numberOfSuggestions));
-    }, []);
 
     useEffect(() => {
         if (!suggestUse) {
@@ -105,6 +113,7 @@ const ChatApp: React.FC = () => {
         setDisabled(false);
         setInputText('');
     };
+
     return (
         <div>
 
@@ -129,7 +138,7 @@ const ChatApp: React.FC = () => {
                             ]}
                         >
                             <CarouselContent>
-                                {suggestions.map((suggestion: any, index: number) => {
+                                {suggestions && suggestions.map((suggestion: any, index: number) => {
                                     return <CarouselItem key={index} onClick={() => { runSuggestion(suggestion) }}>
                                         <div className="p-1">
                                             <Card>
@@ -241,3 +250,5 @@ const ChatApp: React.FC = () => {
 };
 
 export default ChatApp;
+
+
