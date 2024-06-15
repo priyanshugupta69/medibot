@@ -32,6 +32,13 @@ const TermsOfUse = () => {
         All content is provided for informational purposes only. Reliance on any information provided through the service is solely at your own risk, including medical and allergen information.
         {/* HUEGO RELIES UPON PHARMACIES AND PHARMACEUTICALS AND OTHER THIRD-PARTY HEALTHCARE PROVIDERS TO PROVIDE ACCURATE ALLERGEN AND ADVERSE EFFECTS INFORMATION AND GENERAL PRODUCT SAFETY. HUEGO DOES NOT REPRESENT OR WARRANT THAT THE INFORMATION ACCESSIBLE THROUGH THE SERVICE IS ACCURATE, COMPLETE, RELIABLE, CURRENT, OR ERROR-FREE, INCLUDING, WITHOUT LIMITATION, SIDE EFFECTS AND ALLERGEN INFORMATION, PHOTOS, OR MEDICINE QUALITY, OR DESCRIPTIONS, PRICING, OR REVIEWS. ALL CONTENT IS PROVIDED FOR INFORMATIONAL PURPOSES ONLY. THE RELIANCE ON ANY INFORMATION PROVIDED THROUGH THE SERVICE IS SOLELY AT YOUR OWN RISK, INCLUDING, WITHOUT LIMITATION, MEDICAL AND ALLERGEN INFORMATION. */}
       </p>
+      <section>
+          <p className='font-semibold'>
+            <span className='font-normal'>Dr. Tanner Ahmed</span><br />
+            <span className='font-normal'>Creator, Huego.ai</span><br />
+            <span className='font-normal'>Cofounder, Bumblebee Labs Inc</span><br />
+          </p>
+        </section>
     </div>
   );
 };
