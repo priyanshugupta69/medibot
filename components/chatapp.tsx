@@ -191,7 +191,7 @@ const ChatApp = () => {
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
                                         <div className="mb-2 text-right">
-                                            <div className='inline-block bg-[#f0f0f0] p-4 rounded-2xl w-4/6'><p className='text-justify'>{msg.question}</p></div>
+                                            <div className='inline-block bg-[#f0f0f0] p-4 rounded-2xl w-5/6'><p className='text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
