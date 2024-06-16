@@ -125,7 +125,7 @@ const ChatApp = () => {
 
             <div className={`${opacity} w-full top-2/12 lg:top-4/12`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%' }}>
                 <div className='flex items-center justify-start' style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/huego.png" alt="Medibot Logo" className="w-24 md:w-28" />
+                    <img src="/Huego.png" alt="Medibot Logo" className="w-24 md:w-28" />
                     <div className="flex flex-col space-y-2"><div className= {`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Huego</div>
                         <div className='flex justify-center text-xl md:3xl font-serif'>I&apos;m your personal AI-powered health assistant.</div>
                     </div>
@@ -197,7 +197,7 @@ const ChatApp = () => {
                                     {msg.answer && (
                                         <div className="flex items-start mb-10">
                                             <img
-                                                src="/huego.png" // Replace with the actual path to the profile picture
+                                                src="/Huego.png" // Replace with the actual path to the profile picture
                                                 className="w-8 m-2 ml-0 rounded-full"
                                                 style={{ transform: "scaleX(-1)" }}
                                                 alt="Profile"
