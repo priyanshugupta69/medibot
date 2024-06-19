@@ -7,12 +7,12 @@ const Carousel = ({ children }: any) => {
     const content = children;
 
     const handleNext = () => {
-        setCounter(counter == 1 ? 2 : 1);
-        // if (counter !== content.length) {
-        //     setCounter(counter + 1);
-        // } else {
-        //     setCounter(1);
-        // }
+        // setCounter(counter == 1 ? 2 : 1);
+        if (counter !== content.length) {
+            setCounter(counter + 1);
+        } else {
+            setCounter(1);
+        }
     };
 
     const handlePre = () => {
