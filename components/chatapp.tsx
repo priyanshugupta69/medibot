@@ -5,6 +5,10 @@ import Footer from './footer';
 import { Roboto } from 'next/font/google';
 import { getCookieCustom, setCookieCustom } from '@/lib/cookie';
 import Carousel from './Carousel';
+import Image from 'next/image';
+import Huego from "../public/Huego.png"
+import sendSvg from  "../public/send.svg";
+import searchGif from "../public/search.gif";
 
 const roboto = Roboto({
     weight: '500',
@@ -111,12 +115,11 @@ const ChatApp = () => {
 
     return (
         <div>
-
             <div className={`${opacity} w-full mt-20 lg:mt-40`} style={{}}>
                 <div className='flex items-center justify-around' style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/Huego.png" alt="Medibot Logo" className="w-[110px]" />
+                    <Image src={Huego} alt="Medibot Logo" className="w-[110px]" />
                     <div className="flex flex-col space-y-2">
-                        <div className={`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Hi! I'm Huego</div>
+                        <div className={`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Hi! I&apos;m Huego</div>
                         <div className='flex justify-center text-2xl md:4xl font-serif'>your personal AI-powered health assistant.</div>
                     </div>
                 </div>
@@ -165,19 +168,19 @@ const ChatApp = () => {
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
                                         <div className="mb-1 text-right">
-                                            <div className='inline-block p-1 rounded-2xl'><p className='text-justify'>{msg.question}</p></div>
+                                            <div className='inline-block py-2 px-4 border border-[#02839170] rounded-2xl'><p className='text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
                                         <div className="flex items-start mb-3">
-                                            <img
-                                                src="/Huego.png" // Replace with the actual path to the profile picture
+                                            <Image
+                                                src={Huego} // Replace with the actual path to the profile picture
                                                 className="w-8 m-2 ml-0 rounded-full"
                                                 style={{ transform: "scaleX(-1)" }}
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block justify-content p-4 rounded-2xl'><p className='text-justify'>Huego: {msg.answer}</p></div>
+                                                <div id='answer' className='inline-block justify-content pt-4 p-0 rounded-2xl'><p className='text-justify'>Huego: {msg.answer}</p></div>
                                             </div>
 
                                         </div>
@@ -186,8 +189,8 @@ const ChatApp = () => {
                             ))}
 
                             <div>
-                                {loader && <img className='mx-20 w-[80px]' src='/search.gif'>
-                                </img>}
+                                {loader && <Image className='mx-20 w-[80px]' src={searchGif} alt='search'/>
+                                }
                             </div>
                         </div>
                     </div>
@@ -209,7 +212,7 @@ const ChatApp = () => {
                                         className="px-4 py-2 bg-[#323557] text-white w-12"
                                         disabled={disabled}
                                     >
-                                        <img src='/send.svg'></img>
+                                        <Image src={sendSvg} alt='send'/>
                                     </button>
                                 </div>
                             </form>
