@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="./human_2.png" />
+        <link rel="shortcut icon" href="./Huego.png" />
       </head>
       <body className="max-h-10">
         <div className="h-24">

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Typewriter from './typewriter';
 import Footer from './footer';
 import { GetServerSideProps } from 'next';
+import { Roboto } from 'next/font/google';
 import {
     Carousel,
     CarouselContent,
@@ -15,6 +16,11 @@ import Autoplay from "embla-carousel-autoplay"
 import { Card, CardContent } from './ui/card';
 import { getCookieCustom, setCookieCustom } from '@/lib/cookie';
 
+const roboto = Roboto({
+    weight: '500',
+    subsets: ['latin'],
+    display: 'swap',
+  })
 interface Message {
     question: string;
     answer: string;
@@ -114,13 +120,13 @@ const ChatApp = () => {
         setInputText('');
     };
 
-    return (
+    return ( 
         <div>
 
             <div className={`${opacity} w-full top-2/12 lg:top-4/12`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%' }}>
                 <div className='flex items-center justify-start' style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/human_2.png" alt="Medibot Logo" className="w-28 md:w-52" />
-                    <div className="flex flex-col space-y-2"><div className='text-4xl text-[#323557] font-serif font-semibold'>Huego</div>
+                    <img src="/Huego.png" alt="Medibot Logo" className="w-24 md:w-28" />
+                    <div className="flex flex-col space-y-2"><div className= {`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Huego</div>
                         <div className='flex justify-center text-xl md:3xl font-serif'>I&apos;m your personal AI-powered health assistant.</div>
                     </div>
                 </div>
@@ -185,19 +191,19 @@ const ChatApp = () => {
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
                                         <div className="mb-2 text-right">
-                                            <div className='inline-block bg-[#D9D9D9] p-4 rounded-2xl'><p className='text-justify'>{msg.question}</p></div>
+                                            <div className='inline-block bg-[#f0f0f0] p-4 rounded-2xl w-5/6'><p className='text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
                                         <div className="flex items-start mb-10">
                                             <img
-                                                src="/human_2.png" // Replace with the actual path to the profile picture
+                                                src="/Huego.png" // Replace with the actual path to the profile picture
                                                 className="w-8 m-2 ml-0 rounded-full"
                                                 style={{ transform: "scaleX(-1)" }}
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block bg-[#D9D9D9] justify-content p-4 rounded-2xl'><p className='text-justify'>{msg.answer}</p></div>
+                                                <div id='answer' className='inline-block justify-content p-4 rounded-2xl'><p className='text-justify'>{msg.answer}</p></div>
                                             </div>
 
                                         </div>
