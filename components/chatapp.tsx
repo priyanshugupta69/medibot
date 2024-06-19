@@ -1,26 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Typewriter from './typewriter';
 import Footer from './footer';
-import { GetServerSideProps } from 'next';
 import { Roboto } from 'next/font/google';
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
-import { Card, CardContent } from './ui/card';
 import { getCookieCustom, setCookieCustom } from '@/lib/cookie';
+import Carousel from './Carousel';
 
 const roboto = Roboto({
     weight: '500',
     subsets: ['latin'],
     display: 'swap',
-  })
+})
 interface Message {
     question: string;
     answer: string;
@@ -39,17 +29,17 @@ const ChatApp = () => {
     useEffect(() => {
         // Simulate reveal on page load after a delay
         const pullSuggestions = async () => {
-            const data  = await axios.get('https://api.huego.ai/suggestions?count=5')
+            const data = await axios.get('https://api.huego.ai/suggestions?count=5')
             setCookieCustom("suggestions", data.data);
             setSuggestions(data.data);
         }
         if (!getCookieCustom("suggestions")) {
             console.log(1);
-            
+
             pullSuggestions();
         } else {
             console.log(2);
-            
+
             const suggestion = JSON.parse(getCookieCustom('suggestions') as string);
             setSuggestions(suggestion);
         }
@@ -70,7 +60,6 @@ const ChatApp = () => {
     const runSuggestion = async (suggestion: any) => {
         setInputText(suggestion);
         setSuggestionUse(false);
-        // sendMessage();
     }
     const sendMessage = async () => {
         // e.preventDefault();
@@ -120,47 +109,32 @@ const ChatApp = () => {
         setInputText('');
     };
 
-    return ( 
+    return (
         <div>
 
-            <div className={`${opacity} w-full top-2/12 lg:top-4/12`} style={{ position: 'fixed', transform: 'translate(-50%,-50%)', left: '50%' }}>
-                <div className='flex items-center justify-start' style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/Huego.png" alt="Medibot Logo" className="w-24 md:w-28" />
-                    <div className="flex flex-col space-y-2"><div className= {`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Huego</div>
-                        <div className='flex justify-center text-xl md:3xl font-serif'>I&apos;m your personal AI-powered health assistant.</div>
+            <div className={`${opacity} w-full mt-20 lg:mt-40`} style={{}}>
+                <div className='flex items-center justify-around' style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <img src="/Huego.png" alt="Medibot Logo" className="w-[110px]" />
+                    <div className="flex flex-col space-y-2">
+                        <div className={`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Hi! I'm Huego</div>
+                        <div className='flex justify-center text-2xl md:4xl font-serif'>your personal AI-powered health assistant.</div>
                     </div>
                 </div>
-                <div className='absolute mt-5 text-center w-full'>
-                    <div className='w-11/12 lg:w-5/12 m-auto rounded-2xl' style={{ border: '1px solid #B1D4E0' }}>
-                        <Carousel
-                            opts={{
-                                align: "start",
-                                loop: true,
-                            }}
-                            plugins={[
-                                Autoplay({
-                                    delay: 3000,
-                                }),
-                            ]}
-                        >
-                            <CarouselContent>
-                                {suggestions && suggestions.map((suggestion: any, index: number) => {
-                                    return <CarouselItem key={index} onClick={() => { runSuggestion(suggestion) }}>
-                                        <div className="p-1">
-                                            <Card>
-                                                <CardContent className='text-left'>
-                                                    <span className="text-[#323557] text-left text-xs lg:text-sm p-4" style={{ cursor: 'pointer' }}>{suggestion}</span>
-                                                </CardContent>
-                                            </Card>
+                <div className='absolute mt-0 text-center w-full'>
+                    <div className='w-11/12 lg:w-6/12 m-auto border rounded-2xl' style={{ border: '1px solid #B1D4E0' }}>
+                        <Carousel>
+                            {suggestions && suggestions.map((suggestion: any, index: number) => {
+                                return <div key={index} onClick={() => { runSuggestion(suggestion) }}>
+                                    <div>
+                                        <div className="text-[#323557] text-[18px]" style={{ cursor: 'pointer', lineHeight:'normal' }}>
+                                            {suggestion}
                                         </div>
-                                    </CarouselItem>
-                                })}
-                            </CarouselContent>
-                            {/* <CarouselPrevious />
-                            <CarouselNext /> */}
+                                    </div>
+                                </div>
+                            })}
                         </Carousel>
                     </div>
-                    <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
+                    <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center pb-10">
                         <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
                             <input
                                 type="text"
@@ -190,12 +164,12 @@ const ChatApp = () => {
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
-                                        <div className="mb-2 text-right">
-                                            <div className='inline-block bg-[#f0f0f0] p-4 rounded-2xl w-5/6'><p className='text-justify'>{msg.question}</p></div>
+                                        <div className="mb-1 text-right">
+                                            <div className='inline-block p-1 rounded-2xl'><p className='text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
-                                        <div className="flex items-start mb-10">
+                                        <div className="flex items-start mb-3">
                                             <img
                                                 src="/Huego.png" // Replace with the actual path to the profile picture
                                                 className="w-8 m-2 ml-0 rounded-full"
@@ -203,7 +177,7 @@ const ChatApp = () => {
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block justify-content p-4 rounded-2xl'><p className='text-justify'>{msg.answer}</p></div>
+                                                <div id='answer' className='inline-block justify-content p-4 rounded-2xl'><p className='text-justify'>Huego: {msg.answer}</p></div>
                                             </div>
 
                                         </div>
@@ -212,7 +186,7 @@ const ChatApp = () => {
                             ))}
 
                             <div>
-                                {loader && <img className='mx-20' width="80" src='/search.gif'>
+                                {loader && <img className='mx-20 w-[80px]' src='/search.gif'>
                                 </img>}
                             </div>
                         </div>
@@ -244,9 +218,6 @@ const ChatApp = () => {
                             <Footer />
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
 
