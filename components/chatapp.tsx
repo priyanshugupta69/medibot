@@ -117,14 +117,14 @@ const ChatApp = () => {
         <div>
             <div className={`${opacity} w-full mt-20 lg:mt-40`} style={{}}>
                 <div className='flex items-center justify-around' style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Image src={Huego} alt="Medibot Logo" className="w-[110px]" />
+                    <Image src={Huego} alt="Medibot Logo" className="w-[110px] mx-1" />
                     <div className="flex flex-col space-y-2">
                         <div className={`text-4xl text-[#323557] font-semibold ${roboto.className}`}>Hi! I&apos;m Huego</div>
                         <div className='flex justify-center text-2xl md:4xl font-serif'>your personal AI-powered health assistant.</div>
                     </div>
                 </div>
                 <div className='absolute mt-0 text-center w-full'>
-                    <div className='w-11/12 lg:w-6/12 m-auto border rounded-2xl' style={{ border: '1px solid #B1D4E0' }}>
+                    <div className='w-11/12 lg:w-6/12 mt-4 m-auto border rounded-2xl' style={{ border: '1px solid #B1D4E0' }}>
                         <Carousel>
                             {suggestions && suggestions.map((suggestion: any, index: number) => {
                                 return <div key={index} onClick={() => { runSuggestion(suggestion) }}>
@@ -175,12 +175,12 @@ const ChatApp = () => {
                                         <div className="flex items-start mb-3">
                                             <Image
                                                 src={Huego} // Replace with the actual path to the profile picture
-                                                className="w-8 m-2 ml-0 rounded-full"
-                                                style={{ transform: "scaleX(-1)" }}
+                                                className="h-10 lg:h-14 w-auto m-2 ml-0"
+                                                // style={{ transform: "scaleX(-1)" }}
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block justify-content pt-4 p-0 rounded-2xl'><p className='text-justify'>Huego: {msg.answer}</p></div>
+                                                <div id='answer' className='inline-block justify-content pt-4 p-0 rounded-2xl'><p className='text-justify'>[Huego]: {msg.answer}</p></div>
                                             </div>
 
                                         </div>
