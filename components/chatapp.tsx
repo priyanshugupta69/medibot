@@ -7,8 +7,11 @@ import { getCookieCustom, setCookieCustom } from '@/lib/cookie';
 import Carousel from './Carousel';
 import Image from 'next/image';
 import Huego from "../public/Huego.png"
-import sendSvg from  "../public/send.svg";
+import sendSvg from "../public/send.svg";
 import searchGif from "../public/search.gif";
+import { Typewriter } from 'react-simple-typewriter'
+import { backgroundColor, formatAnswer } from '@/lib/utils';
+import { WindupChildren } from "windups";
 
 const roboto = Roboto({
     weight: '500',
@@ -29,6 +32,7 @@ const ChatApp = () => {
     const [suggestions, setSuggestions] = useState<any>([]);
     const [revealed, setRevealed] = useState(false);
     const [suggestUse, setSuggestionUse] = useState(true);
+    const [cursorDisplay, setCursorDisplay] = useState(true);
 
     useEffect(() => {
         // Simulate reveal on page load after a delay
@@ -65,6 +69,7 @@ const ChatApp = () => {
         setInputText(suggestion);
         setSuggestionUse(false);
     }
+
     const sendMessage = async () => {
         // e.preventDefault();
         setDisabled(true)
@@ -72,8 +77,9 @@ const ChatApp = () => {
             const newMessage: Message = { question: inputText, answer: '' };
             setMessages([...messages, newMessage]);
             setOpacity('hidden');
+            setCursorDisplay(true);
             try {
-                setloader(true)
+                setloader(true);
                 const { data } = await axios.get(`https://api.huego.ai/query_data?question=${inputText}`)
                 console.log(data.prompt_response)
                 setMessages(prevMessages =>
@@ -82,13 +88,12 @@ const ChatApp = () => {
                             ? {
                                 ...msg,
                                 answer:
-                                    data.prompt_response == '' ? 'I am not able to understand what you mean, please try reframing your question.' : data.prompt_response
+                                    data.prompt_response == '' ? 'I am not able to understand what you mean, please try reframing your question.' : formatAnswer(data.prompt_response)
                             }
                             : msg
                     )
                 );
-                console.log(disabled)
-
+                console.log(disabled);
             } catch (err) {
                 console.log(err);
                 setMessages(prevMessages =>
@@ -104,11 +109,12 @@ const ChatApp = () => {
                 );
             } finally {
                 setloader(false)
-                setDisabled(false);
-                setInputText('');
             }
         }
         setloader(false)
+    };
+    const handleLoopDone = () => {
+        setCursorDisplay(false);
         setDisabled(false);
         setInputText('');
     };
@@ -129,7 +135,7 @@ const ChatApp = () => {
                             {suggestions && suggestions.map((suggestion: any, index: number) => {
                                 return <div key={index} onClick={() => { runSuggestion(suggestion) }}>
                                     <div>
-                                        <div className="text-[#323557] text-[18px]" style={{ cursor: 'pointer', lineHeight:'normal' }}>
+                                        <div className="text-[#323557] text-[18px]" style={{ cursor: 'pointer', lineHeight: 'normal' }}>
                                             {suggestion}
                                         </div>
                                     </div>
@@ -162,13 +168,13 @@ const ChatApp = () => {
             </div>
             <div className="mx-0 px-0">
                 <div className="w-full h-full" style={{ width: '100vw', display: 'flex', flex: 'none', alignItems: 'center', justifyContent: 'center' }}>
-                    <div className={`w-full ${messages.length == 0 ? 'hidden' : ''}`}>
+                    <div className={`w-full z-0 ${messages.length == 0 ? 'hidden' : ''}`}>
                         <div className="flex-1 overflow-y-auto m-auto mt-20 mb-20 lg:w-8/12 w-11/12">
                             {messages.map((msg, index) => (
                                 <div key={index} className='mt-3'>
                                     {msg.question && (
-                                        <div className="mb-1 text-right">
-                                            <div className='inline-block py-2 px-4 border border-[#02839170] rounded-2xl'><p className='text-justify'>{msg.question}</p></div>
+                                        <div className="mb-1 w-full text-right">
+                                            <div className='inline-block py-2 px-4 border bg-[#00000010] rounded-2xl w-[90%'><p className='text-justify'>{msg.question}</p></div>
                                         </div>
                                     )}
                                     {msg.answer && (
@@ -180,7 +186,19 @@ const ChatApp = () => {
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
-                                                <div id='answer' className='inline-block justify-content pt-4 p-0 rounded-2xl'><p className='text-justify'>[Huego]: {msg.answer}</p></div>
+                                                <div id='answer' className='inline-block justify-content pt-4 p-0 rounded-2xl'>
+                                                    <div className='text-justify'>
+                                                        <b>Huego</b>:
+                                                        {index === messages.length - 1 ?
+                                                            (
+                                                                <WindupChildren onFinished={handleLoopDone}>
+                                                                    {msg.answer}
+                                                                </WindupChildren>
+                                                                // <Typewriter cursor={cursorDisplay}
+                                                                //     loop={1}
+                                                                //     words={[msg.answer]} typeSpeed={30} onLoopDone={handleLoopDone} />
+                                                            ) : (msg.answer)}
+                                                    </div></div>
                                             </div>
 
                                         </div>
@@ -189,13 +207,13 @@ const ChatApp = () => {
                             ))}
 
                             <div>
-                                {loader && <Image className='mx-20 w-[80px]' src={searchGif} alt='search'/>
+                                {loader && <Image className='mx-20 w-[80px]' src={searchGif} alt='search' />
                                 }
                             </div>
                         </div>
                     </div>
-                    <div className="w-full fixed bottom-0 bg-white">
-                        <div className={`w-full bg-white mb-10 ${messages.length === 0 ? 'hidden' : ''}`}>
+                    <div className={`w-full fixed bottom-0 z-1`} style={{backgroundColor:'#f5f5f5'}}>
+                        <div className={`w-full mb-10 ${messages.length === 0 ? 'hidden' : ''}`}>
                             <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
                                 <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
                                     <input
@@ -212,7 +230,7 @@ const ChatApp = () => {
                                         className="px-4 py-2 bg-[#323557] text-white w-12"
                                         disabled={disabled}
                                     >
-                                        <Image src={sendSvg} alt='send'/>
+                                        <Image src={sendSvg} alt='send' />
                                     </button>
                                 </div>
                             </form>

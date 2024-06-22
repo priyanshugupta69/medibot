@@ -51,9 +51,9 @@ const Navigation = () => {
     <nav className="bg-gray-800 p-4 md:p-2 fixed top-0 left-0 right-0 z-50">
       <div className='container mx-auto flex justify-between items-center w-11/12'>
         <div className={`flex items-center ${isOpen ? 'w-full justify-center' : 'inline-block'}`}>
-          <span className='text-[#B1D4E0] font-serif text-lg transition-transform duration-300 ease-in-out transform hover:scale-110 '>
-            <Link href={'/'}>Huego</Link> 
-          </span>
+          {/* <span className=''> */}
+            <Link className='text-[#B1D4E0] font-serif text-2xl transition-transform duration-300 ease-in-out transform hover:scale-110 ' href={'/'}>Huego</Link> 
+          {/* </span> */}
         </div>
         <NavLinks isMobile={false} />
         <div className="md:hidden flex items-center">
