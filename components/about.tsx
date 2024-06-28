@@ -25,8 +25,8 @@ const About = () => {
             &ldquo;In every act of care, we sow the seeds of hope and compassion , let’s make access to healthcare ubiquitous.&rdquo; - <br />
             {/* <p className='mt-2 font-normal'> */}
             <span className='font-normal'>Dr. Tanner Ahmed</span><br />
-            <span className='font-normal'>Creator, Huego.ai</span><br />
-            <span className='font-normal'>Cofounder, Bumblebee Labs Inc</span><br />
+            <span className='font-normal'>Cofounder</span><br />
+            <span className='font-normal'>Huego Labs Inc</span><br />
             {/* </p> */}
           </p>
         </section>

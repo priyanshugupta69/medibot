@@ -35,8 +35,8 @@ const TermsOfUse = () => {
       <section>
           <p className='font-semibold'>
             <span className='font-normal'>Dr. Tanner Ahmed</span><br />
-            <span className='font-normal'>Creator, Huego.ai</span><br />
-            <span className='font-normal'>Cofounder, Bumblebee Labs Inc</span><br />
+            <span className='font-normal'>Cofounder</span><br />
+            <span className='font-normal'>Huego Labs Inc</span><br />
           </p>
         </section>
     </div>
