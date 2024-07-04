@@ -1,54 +1,54 @@
-// components/FormattedData.tsx
 import React, { useEffect, useState } from 'react';
-// import { formatData } from '../utils/formatData';
 import styles from './FormattedData.module.css';
 
 interface FormattedDataProps {
-  data: string;
+    data: string;
 }
 
+
 const FormattedData: React.FC<FormattedDataProps> = ({ data }) => {
-  const [lines, setLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState<number>(0);
-  const [currentText, setCurrentText] = useState<string>('');
 
-  useEffect(() => {
-    const formattedLines = data.split('\n');
-    setLines(formattedLines);
-  }, [data]);
+    const formatLine = (line: string): JSX.Element => {
+        const words = line.split(' ');
+        const boldIndexes: number[] = [];
 
-  useEffect(() => {
-    if (currentLineIndex < lines.length) {
-      const text = lines[currentLineIndex];
-      let index = 0;
-      const interval = setInterval(() => {
-        setCurrentText((prevText) => prevText + text[index]);
-        index++;
-        if (index > text.length) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setCurrentText('');
-            setCurrentLineIndex((prevIndex) => prevIndex + 1);
-          }, 1000);
-        }
-      }, 100);
-      return () => clearInterval(interval);
-    }
-  }, [currentLineIndex, lines]);
+        // Iterate over the words to find those ending with ':'
+        words.forEach((word, index) => {
+            if (word.endsWith(':')) {
+                let i = index;
+                while (i >= 0 && !words[i].endsWith('.') && i !== 0) {
+                    boldIndexes.push(i);
+                    i--;
+                }
+                // Include the word ending with ':'
+                boldIndexes.push(index);
+            }
+        });
 
-  return (
-    <ul className={`${styles.container} element`}>
-      {lines.map((line, index) => (
-        <li key={index} className='line'>
-          {index < currentLineIndex ? (
-            <span>{line}</span>
-          ) : (
-            <span className={styles.typewriterText}>{currentText}</span>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
+        return (
+            <>
+                {words.map((word, index) => (
+                    <span key={index} style={{ fontWeight: boldIndexes.includes(index) ? 'bold' : 'normal' }}>
+                        {word}{index < words.length - 1 ? ' ' : ''}
+                    </span>
+                ))}
+            </>
+        );
+    };
+
+    const formatData = (data: string): JSX.Element[] => {
+        return data.split('\n').map((line, index) => (
+            <li key={index} className='line'>
+                {formatLine(line)}
+            </li>
+        ));
+    };
+
+    return (
+        <ul className='element'>
+            {formatData(data)}
+        </ul>
+    );
 };
 
 export default FormattedData;
