@@ -9,9 +9,10 @@ import Image from 'next/image';
 import Huego from "../public/Huego.png"
 import sendSvg from "../public/send.svg";
 import searchGif from "../public/search.gif";
-import { Typewriter } from 'react-simple-typewriter'
-import { backgroundColor, formatAnswer } from '@/lib/utils';
+import { formatAnswer } from '@/lib/utils';
 import { WindupChildren } from "windups";
+import SpeechToText from './speechRecognition';
+import FormattedData from './FormatText';
 
 const roboto = Roboto({
     weight: '500',
@@ -37,7 +38,7 @@ const ChatApp = () => {
     useEffect(() => {
         // Simulate reveal on page load after a delay
         const pullSuggestions = async () => {
-            const data = await axios.get('https://api.huego.ai/suggestions?count=5')
+            const data = await axios.get('http://localhost:8080/suggestions')
             setCookieCustom("suggestions", data.data);
             setSuggestions(data.data);
         }
@@ -80,8 +81,10 @@ const ChatApp = () => {
             setCursorDisplay(true);
             try {
                 setloader(true);
-                const { data } = await axios.get(`https://api.huego.ai/query_data?question=${inputText}`)
-                console.log(data.prompt_response)
+                const { data } = await axios.get(`http://localhost:8080/query_data?question=${inputText}`)
+                // const newAnswer = formatAnswer(data.prompt_response);
+                console.log(data.prompt_response);
+
                 setMessages(prevMessages =>
                     prevMessages.map((msg, index) =>
                         index === prevMessages.length - 1
@@ -153,13 +156,14 @@ const ChatApp = () => {
                                 placeholder="Ask Huego..."
                                 disabled={disabled}
                             />
+                            {/* <SpeechToText /> */}
                             <button
                                 type="submit"
                                 onClick={sendMessage}
                                 className="px-4 py-2 bg-[#323557] text-white w-12"
                                 disabled={disabled}
                             >
-                                <img src='/send.svg'></img>
+                                <Image src={sendSvg} alt='send' />
                             </button>
                         </div>
                     </form>
@@ -180,9 +184,8 @@ const ChatApp = () => {
                                     {msg.answer && (
                                         <div className="flex items-start mb-3">
                                             <Image
-                                                src={Huego} // Replace with the actual path to the profile picture
+                                                src={Huego}
                                                 className="h-10 lg:h-14 w-auto m-2 ml-0"
-                                                // style={{ transform: "scaleX(-1)" }}
                                                 alt="Profile"
                                             />
                                             <div className="text-left rounded-2xl">
@@ -191,13 +194,11 @@ const ChatApp = () => {
                                                         <b>Huego</b>:
                                                         {index === messages.length - 1 ?
                                                             (
-                                                                <WindupChildren onFinished={handleLoopDone}>
-                                                                    {msg.answer}
-                                                                </WindupChildren>
-                                                                // <Typewriter cursor={cursorDisplay}
-                                                                //     loop={1}
-                                                                //     words={[msg.answer]} typeSpeed={30} onLoopDone={handleLoopDone} />
-                                                            ) : (msg.answer)}
+                                                                // <WindupChildren onFinished={handleLoopDone}>
+                                                                <FormattedData data={msg.answer} />
+                                                                // </WindupChildren>
+                                                            ) : <FormattedData data={msg.answer} />
+                                                        }
                                                     </div></div>
                                             </div>
 
@@ -212,7 +213,7 @@ const ChatApp = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={`w-full fixed bottom-0 z-1`} style={{backgroundColor:'#f5f5f5'}}>
+                    <div className={`w-full fixed bottom-0 z-1`} style={{ backgroundColor: '#f5f5f5' }}>
                         <div className={`w-full mb-10 ${messages.length === 0 ? 'hidden' : ''}`}>
                             <form onSubmit={sendMessage} className="mt-4 w-full flex items-center justify-center">
                                 <div className="lg:w-8/12 w-11/12 flex border border-[#028391] rounded-full overflow-hidden">
@@ -224,6 +225,7 @@ const ChatApp = () => {
                                         placeholder="Ask Huego..."
                                         disabled={disabled}
                                     />
+                                    {/* <SpeechToText /> */}
                                     <button
                                         type="submit"
                                         onClick={sendMessage}

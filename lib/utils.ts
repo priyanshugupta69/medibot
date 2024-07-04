@@ -9,8 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatAnswer(word: string): string {
   // Split the input string by '---'
-  let parts = word.split('-');
-
+  let parts = word.split('---');
+    
   // Trim spaces and ensure each part ends with a period
   parts = parts.map(part => {
     // Trim leading and trailing spaces
@@ -25,3 +25,4 @@ export function formatAnswer(word: string): string {
   // Join the parts with paragraph tags
   return parts.join(' ');
 }
+

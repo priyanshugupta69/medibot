@@ -1,0 +1,46 @@
+/* components/FormattedData.module.css */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+ul.element {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li.line {
+    margin-bottom: 10px;
+}
+
+.typewriterText {
+    overflow: hidden;
+    border-right: 0.08em solid orange;
+    /* Adjust thickness and color */
+    white-space: nowrap;
+    animation: typewriterAnimation 1s steps(40, end), blinkCaretAnimation 0.75s step-end infinite;
+}
+
+@keyframes typewriterAnimation {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blinkCaretAnimation {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
