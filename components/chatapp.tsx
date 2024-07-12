@@ -156,7 +156,7 @@ const ChatApp = () => {
                                 placeholder="Ask Huego..."
                                 disabled={disabled}
                             />
-                            {/* <SpeechToText /> */}
+                            <SpeechToText />
                             <button
                                 type="submit"
                                 onClick={sendMessage}
@@ -225,7 +225,7 @@ const ChatApp = () => {
                                         placeholder="Ask Huego..."
                                         disabled={disabled}
                                     />
-                                    {/* <SpeechToText /> */}
+                                    <SpeechToText />
                                     <button
                                         type="submit"
                                         onClick={sendMessage}
