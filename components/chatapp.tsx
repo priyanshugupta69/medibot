@@ -37,7 +37,7 @@ const ChatApp = () => {
     useEffect(() => {
         // Simulate reveal on page load after a delay
         const pullSuggestions = async () => {
-            const data = await axios.get('https://medibot.vermakaustubh.in/suggestions?count=5')
+            const data = await axios.get('https://api.huego.ai/suggestions?count=5')
             setCookieCustom("suggestions", data.data);
             setSuggestions(data.data);
         }
@@ -80,7 +80,7 @@ const ChatApp = () => {
             setCursorDisplay(true);
             try {
                 setloader(true);
-                const { data } = await axios.get(`https://medibot.vermakaustubh.in/query_data?question=${inputText}`)
+                const { data } = await axios.get(`https://api.huego.ai/query_data?question=${inputText}`)
                 console.log(data.prompt_response)
                 setMessages(prevMessages =>
                     prevMessages.map((msg, index) =>
