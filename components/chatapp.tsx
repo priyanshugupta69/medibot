@@ -81,14 +81,13 @@ const ChatApp = () => {
             try {
                 setloader(true);
                 const { data } = await axios.get(`/api/query_data?question=${inputText}`)
-                console.log(data.prompt_response)
                 setMessages(prevMessages =>
                     prevMessages.map((msg, index) =>
                         index === prevMessages.length - 1
                             ? {
                                 ...msg,
                                 answer:
-                                    data.prompt_response == '' ? 'I am not able to understand what you mean, please try reframing your question.' : formatAnswer(data.prompt_response)
+                                    !data.response ? 'I am not able to understand what you mean, please try reframing your question.' : formatAnswer(data.response)
                             }
                             : msg
                     )
