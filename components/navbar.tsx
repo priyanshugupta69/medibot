@@ -31,10 +31,6 @@ const Navigation = () => {
     <div className={`${isMobile ? 'flex flex-col items-start mt-4 space-y-2 ml-2' : 'hidden md:flex flex-1 justify-center items-center space-x-8'}`}>
       {[
         { href: '/', label: 'Home' },
-        { href: '/about', label: 'About' },
-        { href: '/privacy', label: 'Privacy' },
-        { href: '/terms', label: 'Terms' },
-        { href: '/contact', label: 'Contact' },
       ].map(({ href, label }) => (
         <Link key={href} href={href}>
           <span
